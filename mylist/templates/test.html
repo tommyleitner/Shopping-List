@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shopping List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      #addItemButton {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #addItemButton:hover {
+        background-color: #1f77bd;
+      }
+
+      #itemList {
+        margin-top: 20px;
+        text-align: center;
+        padding-right: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Shopping List</h1>
+      <script>
+        function addItem() {
+          let itemName = prompt("Neues Element hinzufügen");
+          'let token = "{{csrf_token}}";
+          'let formData = new FormData();
+
+          'formData.append("itemName", itemName);
+          'formData.append('csrfmiddlewaretoken', token {{ csrf_token }});
+
+          'fetch("/mytest", {
+            'method: "POST",
+            'body: formData,
+          });
+        }
+      </script>
+      <button onclick="addItem()">Add Item</button>
+      <ul id="itemList">
+        <input type="checkbox" />
+        Emelement 1
+        <br />
+        <input type="checkbox" />
+        Emelement 2
+        <br />
+        <input type="checkbox" />
+        Emelement 3
+        <br />
+        <input type="checkbox" />
+        Emelement 4
+        <br />
+        <input type="checkbox" />
+        Emelement 5
+        <br />
+        <input type="checkbox" />
+        Emelement 6
+        <br />
+      </ul>
+    </div>
+  </body>
+</html>
