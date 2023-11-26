@@ -49,16 +49,22 @@
       <script>
         function addItem() {
           let itemName = prompt("Neues Element hinzufügen");
-          'let token = "{{csrf_token}}";
-          'let formData = new FormData();
+          let token = "{{csrf_token}}";
+          let formData = new FormData();
 
-          'formData.append("itemName", itemName);
-          'formData.append('csrfmiddlewaretoken', token {{ csrf_token }});
+          formData.append("itemName", itemName);
+          formData.append("csrfmiddlewaretoken", token);
 
-          'fetch("/mytest", {
-            'method: "POST",
-            'body: formData,
-          });
+          fetch("/mytest", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              console.log("Item added successfully");
+            })
+            .catch((error) => {
+              console.error("Error adding item:", error);
+            });
         }
       </script>
       <button onclick="addItem()">Add Item</button>
