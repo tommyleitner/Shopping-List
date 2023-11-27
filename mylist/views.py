@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import ShoppingItem
 
 
 def mylist(request):
@@ -8,6 +9,7 @@ def mylist(request):
 def mytest(request):
     if request.method == 'POST':
         print('receivedData: ', request.POST['itemName']) #daten vom frontend zum Backend Übergeben
+        ShoppingItem.objects.create(name = request.POST['itemName'])
     if request.method == 'GET':
-        print('Data sent: ') #daten vom frontend zum Backend Übergeben
+        print('Data sent: ')
     return render(request, 'test.html')
