@@ -46,48 +46,33 @@
   <body>
     <div class="container">
       <h1>Shopping List</h1>
-      <script>
-        function addItem() {
-          let itemName = prompt("Neues Element hinzufügen");
-          let token = "{{csrf_token}}";
-          let formData = new FormData();
 
-          formData.append("itemName", itemName);
-          formData.append("csrfmiddlewaretoken", token);
-
-          fetch("/test/", {
-            method: "POST",
-            body: formData,
-          })
-            .then((response) => {
-              console.log("Item added successfully");
-            })
-            .catch((error) => {
-              console.error("Error adding item:", error);
-            });
-        }
-      </script>
       <button onclick="addItem()">Add Item</button>
-      <ul id="itemList">
-        <input type="checkbox" />
-        Emelement 1
-        <br />
-        <input type="checkbox" />
-        Emelement 2
-        <br />
-        <input type="checkbox" />
-        Emelement 3
-        <br />
-        <input type="checkbox" />
-        Emelement 4
-        <br />
-        <input type="checkbox" />
-        Emelement 5
-        <br />
-        <input type="checkbox" />
-        Emelement 10
-        <br />
-      </ul>
+
+      {% for row in all_items %}
+      <div class="list-item"><input type="checkbox" /> {{ row.name }}</div>
+      {% endfor %}
     </div>
+    <script>
+      function addItem() {
+        let itemName = prompt("Neues Element hinzufügen");
+        let token = "{{csrf_token}}";
+        let formData = new FormData();
+
+        formData.append("itemName", itemName);
+        formData.append("csrfmiddlewaretoken", token);
+
+        fetch("/test/", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => {
+            console.log("Item added successfully");
+          })
+          .catch((error) => {
+            console.error("Error adding item:", error);
+          });
+      }
+    </script>
   </body>
 </html>

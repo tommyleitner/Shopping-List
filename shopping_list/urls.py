@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('mylist/', mylist),
     path('test/', mytest),
+   # path('clearlist/', clearlist)
 ]

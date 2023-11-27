@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import ShoppingItem
 
 
@@ -12,4 +12,7 @@ def mytest(request):
         ShoppingItem.objects.create(name = request.POST['itemName'])
     if request.method == 'GET':
         print('Data sent: ')
-    return render(request, 'test.html')
+    all_items = ShoppingItem.objects.all()
+    #print(f"items: {repr(all_items)}")
+    return render(request, 'test.html', {'all_items': all_items})
+    
